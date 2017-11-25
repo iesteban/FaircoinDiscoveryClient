@@ -1,5 +1,5 @@
 {
-  "name": "SemillasReactNative",
+  "name": "AlternativeCurrencyApp",
   "version": "0.1.2",
   "private": true,
   "scripts": {
@@ -109,6 +109,5 @@
       "React$Element"
     ]
   },
-  "config": {
-  }
+  "config": {}
 }

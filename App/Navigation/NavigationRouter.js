@@ -70,7 +70,7 @@ class NavigationRouter extends Component {
             <scene key='profile' component={ProfileScreen} title='perfil' hideNavBar/>
             <scene key='editService' component={EditServiceScreen} title='service' onback={refreshOnBack} hideNavBar />
             <scene key='editProfile' component={EditProfileScreen} title='perfil' onback={refreshOnBack} hideNavBar />
-            <scene key='currency' component={CurrencyScreen} title='semillas' hideNavBar />
+            <scene key='currency' component={CurrencyScreen} hideNavBar />
             <scene key='login' component={LoginScreen} hideNavBar title='login' />
             <scene key='signup' component={SignupScreen} title='signup' hideNavBar />
             <scene key='recoverPassword' component={RecoverPasswordScreen} title='Recover Password' hideNavBar/>
