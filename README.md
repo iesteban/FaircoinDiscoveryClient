@@ -11,6 +11,15 @@
 
 **Step 3:** Install the Application with `npm install`
 
+**Step 4:** Change your App name. Replace `AlternativeCurrencyApp` by your currency name. 
+
+**Step 5:** Generate ios and android folders with `react-native eject`
+
+**Step 6:** Link the libraries with `react-native link`
+
+**Step 7:** Now you are able to run the app. Read the next point.
+
+**Step 8:** In order to make Location and Camera (among other services) to work you should replace the files inside ios and android folders by their copy in `BuildFiles`. Check out the `Readme.md` in that folder.  
 
 ## :arrow_forward: How to Run App
 
@@ -27,19 +36,6 @@
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 This project adheres to Standard.  Our CI enforces this, so we suggest you enable linting to keep your project compliant during development.
 
-**To Lint on Commit**
-
-This is implemented using [ghooks](https://github.com/gtramontina/ghooks). There is no additional setup needed.
-
-**Bypass Lint**
-
-If you have to bypass lint for a special commit that you will come back and clean (pushing something to a branch etc.) then you can bypass git hooks with adding `--no-verify` to your commit command.
-
-**Understanding Linting Errors**
-
-The linting rules are from JS Standard and React-Standard.  [Regular JS errors can be found with descriptions here](http://eslint.org/docs/rules/), while [React errors and descriptions can be found here](https://github.com/yannickcr/eslint-plugin-react).
-
-## :closed_lock_with_key: Secrets
 
 This project uses [react-native-config](https://github.com/luggit/react-native-config) to expose config variables to your javascript code in React Native. You can store API keys
 and other sensitive information in a `.env` file:
