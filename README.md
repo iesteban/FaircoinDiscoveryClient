@@ -12,6 +12,8 @@ This app is intended to be the base for many different alternative currencies, s
 **Step 3:** Change your App name. Replace `AlternativeCurrencyApp` by your currency name. Find and replace with your favorite editor. Or with teh following commands: 
   * `$ find . -type f  -exec sed -i 's/alternativecurrencyapp/bitcoinbazaar/g' {} \;`
   * `$ find . -type f  -exec sed -i 's/AlternativeCurrencyApp/BitcoinBazaar/g' {} \;` 
+  * `$ find . -type f  -exec sed -i 's/Alternative Currency/Bitcoin Bazaar/g' {} \;` 
+
 
 **Step 4:** Install the Application with `npm install`
 
@@ -19,11 +21,11 @@ This app is intended to be the base for many different alternative currencies, s
 
 **Step 6:** Link the libraries with `react-native link`
 
-**Step 7:** Now you are able to run the app. Read the next point.
+**Step 7:** Now you are able to run the app with `react-native run-android`. For more info go to the next section: How to Run the App
 
 **Step 8:** In order to make Location and Camera (among other services) to work you should replace the files inside ios and android folders by their copy in `BuildFiles`. Check out the `Readme.md` in that folder.  
 
-## :arrow_forward: How to Run App
+## :arrow_forward: How to run the App
 
 1. cd to the repo
 2. Run Build for either OS

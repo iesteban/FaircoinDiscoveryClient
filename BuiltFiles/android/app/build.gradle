@@ -99,7 +99,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.semillasreactnative"
+        applicationId "com.alternativecurrencyapp"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 9
