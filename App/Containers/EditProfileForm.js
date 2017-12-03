@@ -31,6 +31,7 @@ import I18n from 'react-native-i18n'
 import ProfilePhotoUploader from './ProfilePhotoUploader'
 import CommonHeader from '../Components/CommonHeader'
 import UserContact from '../Components/UserContact'
+import NamedLogo from '../Components/NamedLogo'
 import AppConfig from '../Config/AppConfig'
 
 type ProfilePostProps = {
@@ -191,7 +192,7 @@ class EditProfileForm extends React.Component {
         <CommonHeader title={I18n.t('Service')} />
         <Content padder>
           <Card>
-            <Image source={Images.logo} style={[Styles.topLogo, this.state.topLogo]} />
+            <NamedLogo />
             <ProfilePhotoUploader user={this.props.profile} />
             <Form>
               <Item floatingLabel>

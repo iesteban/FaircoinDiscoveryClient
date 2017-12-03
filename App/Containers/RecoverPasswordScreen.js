@@ -28,6 +28,7 @@ import {
   Label
 } from 'native-base'
 import CommonHeader from '../Components/CommonHeader'
+import NamedLogo from '../Components/NamedLogo'
 import I18n from 'react-native-i18n'
 import ServicePhotos from './ServicePhotoUploader'
 
@@ -68,7 +69,7 @@ class RecoverPasswordScreen extends React.Component {
         <CommonHeader title={I18n.t('Service')} />
         <Content padder>
           <Card>
-            <Image source={Images.logo} style={[Styles.topLogo, this.state.topLogo]} />
+            <NamedLogo />
             <Form>
               <Item floatingLabel>
                 <Label>{I18n.t('email')}</Label>

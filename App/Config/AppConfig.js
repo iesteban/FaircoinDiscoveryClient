@@ -5,5 +5,6 @@ export default {
   allowTextFontScaling: true,
   FaircoinEnabled: true,
   CurrencyName: "Semillas",
+  AppShortName: "Bitcoin Bazaar",
   WalletEnabled: true
 }

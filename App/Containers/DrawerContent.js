@@ -11,6 +11,7 @@ import I18n from 'react-native-i18n'
 import LoginActions from '../Redux/LoginRedux'
 import { Images } from '../Themes'
 import DrawerButton from '../Components/DrawerButton'
+import NamedLogo from '../Components/NamedLogo'
 
 class DrawerContent extends Component {
 
@@ -71,7 +72,7 @@ class DrawerContent extends Component {
     if (this.props.user) {
       return (
         <ScrollView style={styles.container}>
-          <Image source={Images.logo} style={styles.logo} />
+          <NamedLogo />
           <DrawerButton
             text={this.props.user.name ? this.props.user.name : this.props.user.username}
             onPress={this.handlePressProfile}
@@ -87,7 +88,7 @@ class DrawerContent extends Component {
     } else {
       return (
         <ScrollView style={styles.container}>
-          <Image source={Images.logo} style={styles.logo} />
+          <NamedLogo />
           <DrawerButton text={I18n.t('Login')} icon='sign-in' onPress={this.handlePressLogin} />
           <DrawerButton text={I18n.t('Sign Up')} icon='hand-o-right' onPress={this.handlePressSignup} />
           <DrawerButton text={I18n.t('How it works')} icon='question' onPress={this.handlePressHowItWorks} />

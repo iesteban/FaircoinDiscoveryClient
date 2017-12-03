@@ -23,6 +23,7 @@ import LoginActions from '../Redux/LoginRedux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import CommonHeader from '../Components/CommonHeader'
+import NamedLogo from '../Components/NamedLogo'
 
 type LoginScreenProps = {
   dispatch: () => any,
@@ -109,7 +110,7 @@ class LoginScreen extends React.Component {
       <Container>
         <CommonHeader title={I18n.t('Login')} />
         <Content contentContainerStyle={Styles.center} style={[Styles.container, {height: this.state.visibleHeight}]} keyboardShouldPersistTaps='always'>
-          <Image source={Images.logo} style={[Styles.topLogo, this.state.topLogo]} />
+          <NamedLogo />
           <View style={Styles.form}>
             <View style={Styles.row}>
               <Text style={Styles.rowLabel}>{I18n.t('email')}</Text>

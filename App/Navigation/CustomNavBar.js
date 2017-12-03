@@ -48,7 +48,7 @@ class CustomNavBar extends React.Component {
       return <SearchBar onSearch={this.props.performSearch} searchTerm={this.props.searchTerm} onCancel={this.cancelSearch} />
     } else {
       return (
-        <Image resizeMode='cover' style={styles.logo} source={Images.clearLogo} />
+        <Image resizeMode='cover' style={styles.logo} source={Images.logo} />
       )
     }
   }
