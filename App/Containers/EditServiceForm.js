@@ -286,7 +286,7 @@ class EditServiceForm extends React.Component {
 
 
           <Item floatingLabel>
-            <Label>{I18n.t('Seeds Price')}</Label>
+            <Label>{I18n.t('Price')}</Label>
             <Input
               ref='seedsPrice'
               value={seedsPrice}

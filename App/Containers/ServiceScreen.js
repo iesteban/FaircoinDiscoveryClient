@@ -92,7 +92,7 @@ class ServiceScreen extends React.Component {
               </CardItem>
               <CardItem>
                 <Body>
-                  <H2>{service.title}</H2>
+                  <H2 selectable>{service.title}</H2>
                 </Body>
               </CardItem>
               <CardItem>
@@ -105,7 +105,7 @@ class ServiceScreen extends React.Component {
               </CardItem>
               <CardItem>
                 <Body>
-                  <Text>{service.description}</Text>
+                  <Text selectable>{service.description}</Text>
                 </Body>
               </CardItem>
 
