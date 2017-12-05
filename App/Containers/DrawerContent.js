@@ -79,9 +79,9 @@ class DrawerContent extends Component {
             icon='user'
           />
           <DrawerButton text={I18n.t('Add Service')} icon='plus-circle' onPress={this.handlePressNewService} />
-          <DrawerButton text={this.walletButtonText()} icon='money' onPress={this.handlePressCurrency} />
-          <DrawerButton text={I18n.t('How it works')} icon='question' onPress={this.handlePressHowItWorks} />
-          <DrawerButton text={I18n.t('About')} icon='info' onPress={this.handlePressAbout} />
+          {AppConfig.WalletEnabled && <DrawerButton text={this.walletButtonText()} icon='money' onPress={this.handlePressCurrency} /> }
+          {AppConfig.howItWorksUrl && <DrawerButton text={I18n.t('How it works')} icon='question' onPress={this.handlePressHowItWorks} /> }
+          {AppConfig.aboutUsUrl && <DrawerButton text={I18n.t('About')} icon='info' onPress={this.handlePressAbout} /> }
           <DrawerButton text={I18n.t('Logout')} icon='sign-out' onPress={() => this.pressLogout(this)} />
         </ScrollView>
       )
@@ -91,8 +91,8 @@ class DrawerContent extends Component {
           <NamedLogo />
           <DrawerButton text={I18n.t('Login')} icon='sign-in' onPress={this.handlePressLogin} />
           <DrawerButton text={I18n.t('Sign Up')} icon='hand-o-right' onPress={this.handlePressSignup} />
-          <DrawerButton text={I18n.t('How it works')} icon='question' onPress={this.handlePressHowItWorks} />
-          <DrawerButton text={I18n.t('About')} icon='info' onPress={this.handlePressAbout} />
+          {AppConfig.howItWorksUrl && <DrawerButton text={I18n.t('How it works')} icon='question' onPress={this.handlePressHowItWorks} /> }
+          {AppConfig.aboutUsUrl && <DrawerButton text={I18n.t('About')} icon='info' onPress={this.handlePressAbout} /> }
         </ScrollView>
       )
     }

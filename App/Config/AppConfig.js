@@ -6,5 +6,9 @@ export default {
   FaircoinEnabled: true,
   CurrencyName: "alternativecurrency",
   AppShortName: "Bitcoin Bazaar",
-  WalletEnabled: true
+  WalletEnabled: true,
+
+  // Set to false to disable this buttons from drawer
+  howItWorksUrl: 'https://www.semillasocial.org/landing/how_it_works/',
+  aboutUsUrl: 'https://www.semillasocial.org/landing/porque/'
 }

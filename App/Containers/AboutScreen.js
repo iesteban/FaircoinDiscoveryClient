@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import CommonHeader from '../Components/CommonHeader'
+import AppConfig from '../Config/AppConfig'
 
 // Styles
 import styles from './Styles/AboutScreenStyle'
@@ -26,7 +27,7 @@ class AboutScreen extends React.Component {
       <Container>
         <CommonHeader title={I18n.t('About')} />
         <WebView
-          source={{uri: 'https://www.semillasocial.org/landing/porque/'}}
+          source={{uri: AppConfig.aboutUsUrl}}
           style={styles.webView}
         />
       </Container>
