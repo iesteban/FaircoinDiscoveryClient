@@ -1,7 +1,7 @@
 #  Alternative Currency App
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 
-This app is intended to be the base for many different alternative currencies, social currencies and marketplace apps. 
+This app is intended to be the base for many different alternative currencies, social currencies and marketplace apps.
 
 ## :arrow_up: How to Setup
 
@@ -9,10 +9,10 @@ This app is intended to be the base for many different alternative currencies, s
 
 **Step 2:** cd to the cloned repo:
 
-**Step 3:** Change your App name. Replace `AlternativeCurrencyApp` by your currency name. Find and replace with your favorite editor. Or with teh following commands: 
+**Step 3:** Change your App name. Replace `AlternativeCurrencyApp` by your currency name. Find and replace with your favorite editor. Or with teh following commands:
   * `$ find . -type f  -exec sed -i 's/alternativecurrencyapp/bitcoinbazaar/g' {} \;`
-  * `$ find . -type f  -exec sed -i 's/AlternativeCurrencyApp/BitcoinBazaar/g' {} \;` 
-  * `$ find . -type f  -exec sed -i 's/Alternative Currency/Bitcoin Bazaar/g' {} \;` 
+  * `$ find . -type f  -exec sed -i 's/AlternativeCurrencyApp/BitcoinBazaar/g' {} \;`
+  * `$ find . -type f  -exec sed -i 's/Alternative Currency/Bitcoin Bazaar/g' {} \;`
 
 
 **Step 4:** Install the Application with `npm install`
@@ -34,6 +34,23 @@ This app is intended to be the base for many different alternative currencies, s
   * for Android
     * Run Genymotion
     * run `react-native run-android`
+
+
+
+## :arrow_forward: Set your Icons
+### Logo inside de app
+Overwrite the files:
+  - `App/Images/Images/top_logo.png`
+  - `App/Images/top_logo@2x.png`
+  - `App/Images/top_logo@3x.png`
+
+### App Icon
+
+  - You should have installed https://www.npmjs.com/package/react-native-icon
+  - Check you have installed Imagemagick
+  - Place a copy of your logo in: MyCurrency/icon.png
+  - Run `$ ./node_modules/.bin/react-native-icon`
+
 
 ## :no_entry_sign: Standard Compliant
 
