@@ -49,7 +49,12 @@ Overwrite the files:
   - You should have installed https://www.npmjs.com/package/react-native-icon
   - Check you have installed Imagemagick
   - Place a copy of your logo in: MyCurrency/icon.png
-  - Run `$ ./node_modules/.bin/react-native-icon`
+  - Run this command to create the app icons:
+    - `$ ./node_modules/.bin/react-native-icon`.
+  - Run the following commands to set up the logo inside the app:
+    - `$ convert icon.png -resize 320x320 App/Images/top_logo.png`
+    - `$ convert icon.png -resize 640x640 App/Images/top_logo@2x.png`  
+    - `$ convert icon.png -resize 1280x1280 App/Images/top_logo@3x.png`
 
 
 ## :no_entry_sign: Standard Compliant
