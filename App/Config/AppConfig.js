@@ -4,11 +4,11 @@ export default {
   // font scaling override - RN default is on
   allowTextFontScaling: true,
   FaircoinEnabled: true,
-  CurrencyName: "alternativecurrency",
+  CurrencyName: "Faircoins",
   AppShortName: "Faircoin Discovery",
-  WalletEnabled: true,
+  WalletEnabled: false,
 
   // Set to false to disable this buttons from drawer
-  howItWorksUrl: 'https://www.semillasocial.org/landing/how_it_works/',
-  aboutUsUrl: 'https://www.semillasocial.org/landing/porque/'
+  howItWorksUrl: 'https://fair-coin.org/',
+  aboutUsUrl: 'https://fair.coop/'
 }
