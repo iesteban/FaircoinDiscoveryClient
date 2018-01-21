@@ -5,7 +5,7 @@ export default {
   allowTextFontScaling: true,
   FaircoinEnabled: true,
   CurrencyName: "alternativecurrency",
-  AppShortName: "Bitcoin Bazaar",
+  AppShortName: "Alternative Currency",
   WalletEnabled: true,
 
   // Set to false to disable this buttons from drawer
