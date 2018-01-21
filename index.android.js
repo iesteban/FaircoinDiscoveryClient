@@ -7,4 +7,4 @@ import { Sentry } from 'react-native-sentry';
 
 Sentry.config('https://2d3dcdcb83e04977ba15535574bb87d5:903189fa421f415f8b7f5f3ee0780473@sentry.io/197460').install();
 
-AppRegistry.registerComponent('AlternativeCurrencyApp', () => App)
+AppRegistry.registerComponent('FaircoinDiscovery', () => App)

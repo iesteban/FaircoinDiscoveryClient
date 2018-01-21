@@ -5,7 +5,7 @@ The goal of this repository is to hold the different files that will be overwrit
 The location of the files listed in this directory are:
 * android/app/build.gradle
 * android/app/src/main/AndroidManifest.xml
-* ios/AlternativeCurrencyApp/Info.plist
+* ios/FaircoinDiscovery/Info.plist
 * android/gradle.properties
 
 ## Android signing
