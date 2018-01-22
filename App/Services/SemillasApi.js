@@ -3,7 +3,7 @@ import apisauce from 'apisauce'
 import I18n from 'react-native-i18n'
 
 // our "constructor"
-const create = (baseURL = 'https://www.semillasocial.org') => {
+const create = (baseURL = 'https://faircoin-discovery.herokuapp.com') => {
   // ------
   // STEP 1
   // ------
