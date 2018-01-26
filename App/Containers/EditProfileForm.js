@@ -209,7 +209,7 @@ class EditProfileForm extends React.Component {
     const editable = !this.props.posting
     return (
       <Container>
-        <CommonHeader title={I18n.t('Service')} />
+        <CommonHeader title={I18n.t('Edit Profile')} />
         <Content padder>
           <Card>
             <NamedLogo />
@@ -296,24 +296,27 @@ class EditProfileForm extends React.Component {
 
           {this.renderFaircoinAddressInput(faircoinAddress, editable)}
 
-          <MapView
-            style={Styles.map}
-            initialRegion={{
-              latitude: latitude,
-              longitude: longitude,
-              latitudeDelta: 0.032,
-              longitudeDelta: 0.031
-            }}
-            onRegionChangeComplete={this.handleChangeMap}
-            >
-            <MapView.Marker
-              coordinate={{
+          <Content style={Styles.mapSection}>
+            <Label>{I18n.t('Where do you offer your services:')}</Label>
+            <MapView
+              style={Styles.map}
+              initialRegion={{
                 latitude: latitude,
-                longitude: longitude}}
-              title={"title"}
-              description={"description"}
-            />
-          </MapView>
+                longitude: longitude,
+                latitudeDelta: 0.032,
+                longitudeDelta: 0.031
+              }}
+              onRegionChangeComplete={this.handleChangeMap}
+              >
+              <MapView.Marker
+                coordinate={{
+                  latitude: latitude,
+                  longitude: longitude}}
+                title={"title"}
+                description={"description"}
+              />
+            </MapView>
+          </Content>
 
           </Form>
           <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressPost}>

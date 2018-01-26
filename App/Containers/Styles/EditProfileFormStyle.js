@@ -76,11 +76,13 @@ export default StyleSheet.create({
   map: {
     height: 250,
     borderRadius: 5,
-    marginHorizontal: Metrics.section,
-    marginVertical: Metrics.baseMargin,
     backgroundColor: Colors.fire,
     alignItems: 'center',
-    ...StyleSheet.absoluteFillObject
+  },
+
+  mapSection: {
+    marginHorizontal: Metrics.marginHorizontal+Metrics.baseMargin,
+    marginVertical: Metrics.section,
   },
 
 })
