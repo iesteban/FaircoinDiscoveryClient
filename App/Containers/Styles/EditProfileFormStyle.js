@@ -72,6 +72,15 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: Fonts.size.medium,
     marginVertical: Metrics.baseMargin
-  }
+  },
+  map: {
+    height: 250,
+    borderRadius: 5,
+    marginHorizontal: Metrics.section,
+    marginVertical: Metrics.baseMargin,
+    backgroundColor: Colors.fire,
+    alignItems: 'center',
+    ...StyleSheet.absoluteFillObject
+  },
 
 })

@@ -25,6 +25,7 @@ import {
 import { connect } from 'react-redux'
 import Styles from './Styles/EditProfileFormStyle'
 import {Images, Metrics} from '../Themes'
+import MapView from 'react-native-maps'
 import UsersActions from '../Redux/UsersRedux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
@@ -52,6 +53,8 @@ class EditProfileForm extends React.Component {
     faircoinAddress: string,
     visibleHeight: number,
     uuid: string,
+    latitude: float,
+    longitude: float,
     topLogo: {
       width: number
     },
@@ -69,6 +72,8 @@ class EditProfileForm extends React.Component {
       phone: '',
       telegramId: '',
       faircoinAddress: '',
+      longitude: '',
+      latitude: '',
       visibleHeight: Metrics.screenHeight,
       uuid: null
     }
@@ -82,6 +87,8 @@ class EditProfileForm extends React.Component {
     this.state.telegramId = profile.telegram_id
     this.state.faircoinAddress = profile.faircoin_address
     this.state.uuid= profile.uuid
+    this.state.longitude = parseFloat(profile.location.longitude)
+    this.state.latitude = parseFloat(profile.location.latitude)
   }
 
   componentWillMount () {
@@ -145,6 +152,11 @@ class EditProfileForm extends React.Component {
     this.setState({ faircoinAddress: text })
   }
 
+  handleChangeMap = (region) => {
+    this.setState( { longitude: region.longitude})
+    this.setState({latitude: region.latitude})
+  }
+
   renderPublishButtonText () {
     if (this.props.posting) {
       return (
@@ -185,7 +197,15 @@ class EditProfileForm extends React.Component {
   }
 
   render () {
-    const { name, email, phone, telegramId, faircoinAddress } = this.state
+    const {
+      name,
+      email,
+      phone,
+      telegramId,
+      faircoinAddress,
+      longitude,
+      latitude
+    } = this.state
     const editable = !this.props.posting
     return (
       <Container>
@@ -267,14 +287,33 @@ class EditProfileForm extends React.Component {
               onSubmitEditing={this.handlePressPost}
               />
           </Item>
-            <Text style={Styles.errorLabel}>
-              { (this.props.error && this.props.error.phone) ? this.props.error['phone'][0] : ''}
-            </Text>
+          <Text style={Styles.errorLabel}>
+            { (this.props.error && this.props.error.phone) ? this.props.error['phone'][0] : ''}
+          </Text>
           <Text style={Styles.errorLabel}>
             { (this.props.error && this.props.error.non_field_errors) ? this.props.error['non_field_errors'][0] : ''}
           </Text>
 
-      {this.renderFaircoinAddressInput(faircoinAddress, editable)}
+          {this.renderFaircoinAddressInput(faircoinAddress, editable)}
+
+          <MapView
+            style={Styles.map}
+            initialRegion={{
+              latitude: latitude,
+              longitude: longitude,
+              latitudeDelta: 0.032,
+              longitudeDelta: 0.031
+            }}
+            onRegionChangeComplete={this.handleChangeMap}
+            >
+            <MapView.Marker
+              coordinate={{
+                latitude: latitude,
+                longitude: longitude}}
+              title={"title"}
+              description={"description"}
+            />
+          </MapView>
 
           </Form>
           <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressPost}>
@@ -293,7 +332,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     error: state.users.postError,
     profile: state.users.entities[state.login.user.uuid],
-    posting: state.users.posting
+    posting: state.users.posting,
   }
 }
 
