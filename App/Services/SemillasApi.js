@@ -142,7 +142,7 @@ const create = (baseURL = 'https://www.semillasocial.org') => {
         'email': email,
         'phone': phone,
         'telegram_id': telegramId,
-        'faircoin_address': FaircoinAddress
+        'faircoin_address': FaircoinAddress,
         'location': {
           'longitude': longitude,
           'latitude': latitude
