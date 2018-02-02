@@ -30,7 +30,7 @@ export function * getWallet(api, action) {
 
   // success?
   if (response.ok) {
-    yield put(WalletActions.walletSuccess(response.data))
+        yield put(WalletActions.walletSuccess(response.data))
   } else {
     yield put(WalletActions.walletFailure(response.data))
   }

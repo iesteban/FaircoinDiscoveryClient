@@ -11,7 +11,8 @@ const { Types, Creators } = createActions({
   usersFailure: null,
   profilePostRequest: [
     'name', 'email', 'phone',
-    'telegramId', 'faircoinAddress', 'uuid'
+    'telegramId', 'faircoinAddress', 'longitude',
+    'latitude', 'uuid'
   ],
   profilePostSuccess: ['profile'],
   profilePostFailure: ['error'],
@@ -73,7 +74,8 @@ export const profilePostRequest = (state: Object, action : Object) => {
 // successful profile lookup
 export const profilePostSuccess = (state: Object, action: Object) => {
   var newItems = Object.assign({}, state.items)
-  const { uuid, name, phone, email, picture, telegramId, faircoinAddress } = action.profile
+  const { uuid, name, phone, email, picture, telegramId, faircoinAddress,
+    longitude, latitude } = action.profile
   user = state.entities[uuid]
   newUser = Object.assign({}, user, action.profile)
   newEntity = {}
