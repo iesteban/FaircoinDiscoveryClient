@@ -125,11 +125,11 @@ class EditProfileForm extends React.Component {
   }
 
   handlePressPost = () => {
-    var { name, email, phone, telegramId, faircoinAddress, uuid } = this.state
+    var { name, email, phone, telegramId, faircoinAddress, longitude, latitude, uuid } = this.state
     this.isAttempting = true
     // attempt a login - a saga is listening to pick it up from here.
 
-    this.props.attemptProfilePost(name, email, phone, telegramId, faircoinAddress, uuid)
+    this.props.attemptProfilePost(name, email, phone, telegramId, faircoinAddress, longitude, latitude, uuid)
   }
 
   handleChangeName = (text) => {
@@ -342,13 +342,15 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptProfilePost:
-      (name, email, phone, telegramId, faircoinAddress, uuid) => dispatch(
+      (name, email, phone, telegramId, faircoinAddress, longitude, latitude, uuid) => dispatch(
         UsersActions.profilePostRequest(
           name,
           email,
           phone,
           telegramId,
           faircoinAddress,
+          longitude,
+          latitude,
           uuid
         )
       )
