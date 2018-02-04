@@ -4,8 +4,8 @@ export default {
   // font scaling override - RN default is on
   allowTextFontScaling: true,
   FaircoinEnabled: true,
-  CurrencyName: "alternativecurrency",
-  AppShortName: "Alternative Currency",
+  CurrencyName: 'alternativecurrency',
+  AppShortName: 'Alternative Currency',
   WalletEnabled: true,
 
   // Set to false to disable this buttons from drawer

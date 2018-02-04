@@ -99,7 +99,7 @@ class UserScreen extends React.Component {
           <Text>{I18n.t('Edit Profile')}</Text>
         </Button>
       )
-    } else {
+    } else if (AppConfig.WalletEnabled) {
       return (
         <Button block
           onPress={() => {
@@ -109,6 +109,8 @@ class UserScreen extends React.Component {
           <Text>{I18n.t('Send') + ' ' +  AppConfig.CurrencyName}</Text>
         </Button>
       )
+    } else {
+      return (<Content />)
     }
   }
 
