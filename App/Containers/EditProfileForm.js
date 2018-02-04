@@ -55,6 +55,7 @@ class EditProfileForm extends React.Component {
     uuid: string,
     latitude: float,
     longitude: float,
+    formChanged: boolean,
     topLogo: {
       width: number
     },
@@ -74,6 +75,7 @@ class EditProfileForm extends React.Component {
       faircoinAddress: '',
       longitude: '',
       latitude: '',
+      formChanged: false,
       visibleHeight: Metrics.screenHeight,
       uuid: null
     }
@@ -128,39 +130,42 @@ class EditProfileForm extends React.Component {
     var { name, email, phone, telegramId, faircoinAddress, longitude, latitude, uuid } = this.state
     this.isAttempting = true
     // attempt a login - a saga is listening to pick it up from here.
-
+    this.setState({ formChanged: false})
     this.props.attemptProfilePost(name, email, phone, telegramId, faircoinAddress, longitude, latitude, uuid)
   }
 
   handleChangeName = (text) => {
-    this.setState({ name: text })
+    this.setState({ name: text, formChanged: true })
   }
 
   handleChangeEmail = (text) => {
-    this.setState({ email: text })
+    this.setState({ email: text, formChanged: true })
   }
 
   handleChangePhone = (text) => {
-    this.setState({ phone: text })
+    this.setState({ phone: text, formChanged: true })
   }
 
   handleChangeTelegramId= (text) => {
-    this.setState({ telegramId: text })
+    this.setState({ telegramId: text, formChanged: true })
   }
 
   handleChangeFaircoinAddress = (text) => {
-    this.setState({ faircoinAddress: text })
+    this.setState({ faircoinAddress: text, formChanged: true })
   }
 
   handleChangeMap = (region) => {
-    this.setState( { longitude: region.longitude})
-    this.setState({latitude: region.latitude})
+    this.setState({ longitude: region.longitude, latitude: region.latitude, formChanged: true})
   }
 
-  renderPublishButtonText () {
+  renderPublishButtonText (formChanged) {
     if (this.props.posting) {
       return (
         <Text style={Styles.buttonText}>{I18n.t('Publishing')}</Text>
+      )
+    } else if (formChanged) { 
+      return (
+        <Text style={Styles.buttonText}>{I18n.t('Publish')}</Text>
       )
     } else {
       return (
@@ -204,7 +209,8 @@ class EditProfileForm extends React.Component {
       telegramId,
       faircoinAddress,
       longitude,
-      latitude
+      latitude,
+      formChanged
     } = this.state
     const editable = !this.props.posting
     return (
@@ -321,7 +327,7 @@ class EditProfileForm extends React.Component {
           </Form>
           <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressPost}>
             <CardItem style={Styles.buttonCta}>
-              {this.renderPublishButtonText()}
+              {this.renderPublishButtonText(formChanged)}
             </CardItem>
           </TouchableOpacity>
           </Card>
