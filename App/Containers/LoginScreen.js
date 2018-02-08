@@ -2,10 +2,8 @@
 
 import React from 'react'
 import {
-  View,
-  ScrollView,
+  ScrollContent,
   Text,
-  TextInput,
   TouchableOpacity,
   Image,
   Keyboard,
@@ -14,6 +12,12 @@ import {
 import {
   Container,
   Content,
+  Card,
+  Body,
+  Input,
+  Form,
+  Item,
+  Label,
   Button
 } from 'native-base'
 import { connect } from 'react-redux'
@@ -109,14 +113,14 @@ class LoginScreen extends React.Component {
     return (
       <Container>
         <CommonHeader title={I18n.t('Login')} />
-        <Content contentContainerStyle={Styles.center} style={[Styles.container, {height: this.state.visibleHeight}]} keyboardShouldPersistTaps='always'>
+        <Content padder>
+      <Card>
           <NamedLogo />
-          <View style={Styles.form}>
-            <View style={Styles.row}>
-              <Text style={Styles.rowLabel}>{I18n.t('email')}</Text>
-              <TextInput
+          <Form>
+            <Item floatingLabel>
+              <Label>{I18n.t('email')}</Label>
+              <Input
                 ref='email'
-                style={textInputStyle}
                 value={email}
                 editable={editable}
                 keyboardType='email-address'
@@ -126,17 +130,16 @@ class LoginScreen extends React.Component {
                 onChangeText={this.handleChangeEmail}
                 underlineColorAndroid='transparent'
                 onSubmitEditing={() => this.refs.password.focus()}
-                placeholder={I18n.t('email')} />
-              <Text style={Styles.errorLabel}>
-                { (this.props.error && this.props.error.email) ? this.props.error['email'][0] : ''}
-              </Text>
-            </View>
+              />
+            </Item>
+            <Text style={Styles.errorLabel}>
+              { (this.props.error && this.props.error.email) ? this.props.error['email'][0] : ''}
+            </Text>
 
-            <View style={Styles.row}>
-              <Text style={Styles.rowLabel}>{I18n.t('Password')}</Text>
-              <TextInput
+            <Item floatingLabel>
+              <Label>{I18n.t('Password')}</Label>
+              <Input
                 ref='password'
-                style={textInputStyle}
                 value={password}
                 editable={editable}
                 keyboardType='default'
@@ -147,15 +150,18 @@ class LoginScreen extends React.Component {
                 onChangeText={this.handleChangePassword}
                 underlineColorAndroid='transparent'
                 onSubmitEditing={this.handlePressLogin}
-                placeholder={I18n.t('Password')} />
-              <Text style={Styles.errorLabel}>
-                { (this.props.error && this.props.error.password) ? this.props.error['password'][0] : ''}
-              </Text>
-            </View>
+              />
+            </Item>
+            <Text style={Styles.errorLabel}>
+              { (this.props.error && this.props.error.password) ? this.props.error['password'][0] : ''}
+            </Text>
+
             <Text style={Styles.errorLabel}>
               { (this.props.error && this.props.error.non_field_errors) ? this.props.error['non_field_errors'][0] : ''}
             </Text>
 
+            <Content>
+              <Body>
             <Button
               transparent
               info
@@ -163,21 +169,26 @@ class LoginScreen extends React.Component {
               >
               <Text>{I18n.t('Forgot password?')}</Text>
             </Button>
+              </Body>
+            </Content>
 
 
-            <View style={[Styles.loginRow]}>
-              <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressLogin}>
-                <View style={Styles.loginButton}>
-                  <Text style={Styles.loginText}>{I18n.t('signIn')}</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity style={Styles.loginButtonWrapper} onPress={NavigationActions.pop}>
-                <View style={Styles.loginButton}>
-                  <Text style={Styles.loginText}>{I18n.t('cancel')}</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
+            <Button
+              block
+              onPress={this.handlePressLogin}
+              >
+               <Text> {I18n.t('signIn')} </Text>
+            </Button>
+
+            <Button
+              block
+              light
+              onPress={NavigationActions.pop}
+              >
+                <Text>{I18n.t('cancel')}</Text>
+            </Button>
+          </Form>
+      </Card>
         </Content>
 
       </Container>
