@@ -2,10 +2,7 @@
 
 import React from 'react'
 import {
-  ScrollContent,
   Text,
-  TouchableOpacity,
-  Image,
   Keyboard,
   LayoutAnimation
 } from 'react-native'
@@ -22,7 +19,7 @@ import {
 } from 'native-base'
 import { connect } from 'react-redux'
 import Styles from './Styles/LoginScreenStyle'
-import {Images, Metrics} from '../Themes'
+import { Metrics } from '../Themes'
 import LoginActions from '../Redux/LoginRedux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
@@ -109,88 +106,86 @@ class LoginScreen extends React.Component {
     const { email, password } = this.state
     const { fetching } = this.props
     const editable = !fetching
-    const textInputStyle = editable ? Styles.textInput : Styles.textInputReadonly
+
     return (
       <Container>
         <CommonHeader title={I18n.t('Login')} />
         <Content padder>
-      <Card>
-          <NamedLogo />
-          <Form>
-            <Item floatingLabel>
-              <Label>{I18n.t('email')}</Label>
-              <Input
-                ref='email'
-                value={email}
-                editable={editable}
-                keyboardType='email-address'
-                returnKeyType='next'
-                autoCapitalize='none'
-                autoCorrect={false}
-                onChangeText={this.handleChangeEmail}
-                underlineColorAndroid='transparent'
-                onSubmitEditing={() => this.refs.password.focus()}
-              />
-            </Item>
-            <Text style={Styles.errorLabel}>
-              { (this.props.error && this.props.error.email) ? this.props.error['email'][0] : ''}
-            </Text>
+          <Card>
+            <NamedLogo />
+            <Form>
+              <Item floatingLabel>
+                <Label>{I18n.t('email')}</Label>
+                <Input
+                  ref='email'
+                  value={email}
+                  editable={editable}
+                  keyboardType='email-address'
+                  returnKeyType='next'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  onChangeText={this.handleChangeEmail}
+                  underlineColorAndroid='transparent'
+                  onSubmitEditing={() => this.refs.password.focus()}
+                />
+              </Item>
+              <Text style={Styles.errorLabel}>
+                { (this.props.error && this.props.error.email) ? this.props.error['email'][0] : ''}
+              </Text>
 
-            <Item floatingLabel>
-              <Label>{I18n.t('Password')}</Label>
-              <Input
-                ref='password'
-                value={password}
-                editable={editable}
-                keyboardType='default'
-                returnKeyType='go'
-                autoCapitalize='none'
-                autoCorrect={false}
-                secureTextEntry
-                onChangeText={this.handleChangePassword}
-                underlineColorAndroid='transparent'
-                onSubmitEditing={this.handlePressLogin}
-              />
-            </Item>
-            <Text style={Styles.errorLabel}>
-              { (this.props.error && this.props.error.password) ? this.props.error['password'][0] : ''}
-            </Text>
+              <Item floatingLabel>
+                <Label>{I18n.t('Password')}</Label>
+                <Input
+                  ref='password'
+                  value={password}
+                  editable={editable}
+                  keyboardType='default'
+                  returnKeyType='go'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  secureTextEntry
+                  onChangeText={this.handleChangePassword}
+                  underlineColorAndroid='transparent'
+                  onSubmitEditing={this.handlePressLogin}
+                />
+              </Item>
+              <Text style={Styles.errorLabel}>
+                { (this.props.error && this.props.error.password) ? this.props.error['password'][0] : ''}
+              </Text>
 
-            <Text style={Styles.errorLabel}>
-              { (this.props.error && this.props.error.non_field_errors) ? this.props.error['non_field_errors'][0] : ''}
-            </Text>
+              <Text style={Styles.errorLabel}>
+                { (this.props.error && this.props.error.non_field_errors) ? this.props.error['non_field_errors'][0] : ''}
+              </Text>
 
-            <Content>
-              <Body>
-            <Button
-              transparent
-              info
-              onPress={NavigationActions.recoverPassword}
-              >
-              <Text>{I18n.t('Forgot password?')}</Text>
-            </Button>
-              </Body>
-            </Content>
+              <Content>
+                <Body>
+                  <Button
+                    transparent
+                    info
+                    onPress={NavigationActions.recoverPassword}
+                    >
+                    <Text>{I18n.t('Forgot password?')}</Text>
+                  </Button>
+                </Body>
+              </Content>
 
+              <Button
+                block
+                onPress={this.handlePressLogin}
+                >
+                <Text> {I18n.t('signIn')} </Text>
+              </Button>
 
-            <Button
-              block
-              onPress={this.handlePressLogin}
-              >
-               <Text> {I18n.t('signIn')} </Text>
-            </Button>
-
-            <Button
-              block
-              light
-              onPress={NavigationActions.pop}
-              >
+              <Button
+                block
+                light
+                onPress={NavigationActions.pop}
+                >
                 <Text>{I18n.t('cancel')}</Text>
-            </Button>
-          </Form>
-      </Card>
+              </Button>
+            </Form>
+          </Card>
         </Content>
-
       </Container>
     )
   }
