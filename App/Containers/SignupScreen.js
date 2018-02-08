@@ -2,9 +2,6 @@
 
 import React from 'react'
 import {
-  View,
-  ScrollView,
-  Image,
   Keyboard,
   LayoutAnimation
 } from 'react-native'
@@ -17,11 +14,11 @@ import {
   Label,
   Button,
   Input,
-  Text, 
+  Text,
   Content
 } from 'native-base'
 import Styles from './Styles/SignupScreenStyle'
-import {Images, Metrics} from '../Themes'
+import { Metrics } from '../Themes'
 import LoginActions from '../Redux/LoginRedux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
@@ -115,7 +112,6 @@ class SignupScreen extends React.Component {
     const { email, password1, password2 } = this.state
     const { fetching } = this.props
     const editable = !fetching
-    const textInputStyle = editable ? Styles.textInput : Styles.textInputReadonly
     return (
       <Container>
         <CommonHeader title={I18n.t('Sign Up')} />
