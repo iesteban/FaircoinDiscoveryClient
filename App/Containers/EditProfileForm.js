@@ -2,11 +2,7 @@
 
 import React from 'react'
 import {
-  View,
-  ScrollView,
-  TextInput,
   TouchableOpacity,
-  Image,
   Keyboard,
   LayoutAnimation
 } from 'react-native'
@@ -16,7 +12,6 @@ import {
   Card,
   CardItem,
   Input,
-  Button,
   Text,
   Form,
   Item,
@@ -24,14 +19,12 @@ import {
 } from 'native-base'
 import { connect } from 'react-redux'
 import Styles from './Styles/EditProfileFormStyle'
-import {Images, Metrics} from '../Themes'
+import { Metrics } from '../Themes'
 import MapView from 'react-native-maps'
 import UsersActions from '../Redux/UsersRedux'
-import { Actions as NavigationActions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import ProfilePhotoUploader from './ProfilePhotoUploader'
 import CommonHeader from '../Components/CommonHeader'
-import UserContact from '../Components/UserContact'
 import NamedLogo from '../Components/NamedLogo'
 import AppConfig from '../Config/AppConfig'
 
@@ -53,8 +46,8 @@ class EditProfileForm extends React.Component {
     faircoinAddress: string,
     visibleHeight: number,
     uuid: string,
-    latitude: float,
-    longitude: float,
+    latitude: number,
+    longitude: number,
     formChanged: boolean,
     topLogo: {
       width: number
