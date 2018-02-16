@@ -59,7 +59,7 @@ class UserScreen extends React.Component {
         <View style={styles.mapSection}>
           <MapView
             style={styles.map}
-            initialRegion={{
+            region={{
               latitude: parseFloat(user.location.latitude),
               longitude: parseFloat(user.location.longitude),
               latitudeDelta: 0.032,

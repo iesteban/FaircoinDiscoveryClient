@@ -75,7 +75,7 @@ export const profilePostRequest = (state: Object, action : Object) => {
 export const profilePostSuccess = (state: Object, action: Object) => {
   var newItems = Object.assign({}, state.items)
   const { uuid, name, phone, email, picture, telegramId, faircoinAddress,
-    longitude, latitude } = action.profile
+    location } = action.profile
   user = state.entities[uuid]
   newUser = Object.assign({}, user, action.profile)
   newEntity = {}

@@ -16,7 +16,6 @@ class ProfileScreen extends React.Component {
       <UserScreen uuid={this.props.userUuid} />
     )
   }
-
 }
 
 const mapStateToProps = (state) => {
