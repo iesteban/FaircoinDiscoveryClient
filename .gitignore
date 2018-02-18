@@ -54,3 +54,4 @@ buck-out/
 
 # Vim
 *.un~
+tags

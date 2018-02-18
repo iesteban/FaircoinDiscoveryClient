@@ -9,7 +9,7 @@ import {
   Image
 } from 'react-native'
 import I18n from 'react-native-i18n'
-import { Toast } from 'native-base';
+import { Toast, Content } from 'native-base';
 import { Images } from '../Themes/'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import AppConfig from '../Config/AppConfig'
@@ -58,10 +58,10 @@ export default class ServiceFeed extends React.Component {
     if (user.email) {
       url = "mailto:" + user.email
       return (
-        <View>
+        <Content>
           <Text style={styles.fieldTitle}>{I18n.t('Email')}</Text>
           {this.renderContactLink(url, user.email)}
-        </View>
+        </Content>
       )
     } else {
       return (<View />)
@@ -113,12 +113,12 @@ export default class ServiceFeed extends React.Component {
   render () {
     const { user } = this.props
     return (
-      <View>
+      <Content>
         {this.renderEmail(user)}
         {this.renderTelegramId(user)}
         {this.renderPhone(user)}
         {this.renderFaircoinAddress(user)}
-      </View>
+      </Content>
     )
   }
 }

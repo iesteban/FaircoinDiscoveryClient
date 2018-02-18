@@ -23,6 +23,7 @@ import {
   Button,
   Text,
   Form,
+  Toast,
   Item,
   Label
 } from 'native-base'
@@ -91,9 +92,11 @@ class EditServiceForm extends React.Component {
   componentWillMount () {
     // Using keyboardWillShow/Hide looks 1,000 times better, but doesn't work on Android
     // TODO: Revisit this if Android begins to support - https://github.com/facebook/react-native/issues/3468 or https://github.com/facebook/react-native/issues/14275
+    this.props.clearNewService()
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow)
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide)
 
+    this.state.new
     if (this.props.uuid) {
       // Editing a service
       if (this.props.service) {
@@ -144,8 +147,6 @@ class EditServiceForm extends React.Component {
       uuid = this.props.newService
     }
     this.props.attemptServicePost(title, description, category, seedsPrice, uuid)
-//    this.props.feedClear()
-//    this.props.feedRequest()
   }
 
   handlePressDelete = () => {
@@ -154,7 +155,14 @@ class EditServiceForm extends React.Component {
     } else if (this.props.newService) {
       this.props.attemptServiceDelete(this.props.newService)
     }
-    NavigationActions.feed()
+
+    Toast.show({
+      text: I18n.t('Offer Deleted'),
+      position: 'bottom',
+      buttonText: 'Okay'
+    })
+
+    NavigationActions.profile()
   }
 
   handleChangeTitle = (text) => {
@@ -182,6 +190,22 @@ class EditServiceForm extends React.Component {
           onPress={this.handlePressDelete}
         >
           <Text> {I18n.t('Delete Service')} </Text>
+        </Button>
+      )
+    } else {
+      return (<Content />)
+    }
+  }
+
+  renderGoToServiceButton() {
+    if (!(this.props.uuid) && (this.props.newService)) {
+      return (
+        <Button
+          block
+          info 
+          onPress={() => NavigationActions.service({uuid: this.props.newService})}
+        >
+          <Text> {I18n.t('View Service')} </Text>
         </Button>
       )
     } else {
@@ -315,6 +339,7 @@ class EditServiceForm extends React.Component {
               >
                 {this.renderPublishButtonText()}
             </Button>
+            {this.renderGoToServiceButton()}
           </Card>
         </Content>
       </Container>

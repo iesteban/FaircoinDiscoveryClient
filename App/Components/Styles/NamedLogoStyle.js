@@ -10,6 +10,7 @@ export default {
     fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold',
+    marginBottom: Metrics.section,
     color: Colors.cta
   },
 

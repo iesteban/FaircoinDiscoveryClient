@@ -3,8 +3,6 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
-import { Actions as NavigationActions } from 'react-native-router-flux'
-
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({

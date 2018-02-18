@@ -134,14 +134,19 @@ const create = (baseURL = 'https://faircoin-discovery.herokuapp.com') => {
       }
     )
 
-  const putUser = (uuid, name, email, phone, telegramId, FaircoinAddress) =>
+  const putUser = (uuid, name, email, phone, telegramId, FaircoinAddress,
+    longitude, latitude) =>
     api.patch('/api/v1/user/update/' + uuid + '/',
       {
         'name': name,
         'email': email,
         'phone': phone,
         'telegram_id': telegramId,
-        'faircoin_address': FaircoinAddress
+        'faircoin_address': FaircoinAddress,
+        'location': {
+          'longitude': longitude,
+          'latitude': latitude
+        }
       }
     )
 

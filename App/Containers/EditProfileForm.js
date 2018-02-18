@@ -2,11 +2,7 @@
 
 import React from 'react'
 import {
-  View,
-  ScrollView,
-  TextInput,
   TouchableOpacity,
-  Image,
   Keyboard,
   LayoutAnimation
 } from 'react-native'
@@ -16,7 +12,6 @@ import {
   Card,
   CardItem,
   Input,
-  Button,
   Text,
   Form,
   Item,
@@ -24,13 +19,12 @@ import {
 } from 'native-base'
 import { connect } from 'react-redux'
 import Styles from './Styles/EditProfileFormStyle'
-import {Images, Metrics} from '../Themes'
+import { Metrics } from '../Themes'
+import MapView from 'react-native-maps'
 import UsersActions from '../Redux/UsersRedux'
-import { Actions as NavigationActions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import ProfilePhotoUploader from './ProfilePhotoUploader'
 import CommonHeader from '../Components/CommonHeader'
-import UserContact from '../Components/UserContact'
 import NamedLogo from '../Components/NamedLogo'
 import AppConfig from '../Config/AppConfig'
 
@@ -52,6 +46,9 @@ class EditProfileForm extends React.Component {
     faircoinAddress: string,
     visibleHeight: number,
     uuid: string,
+    latitude: number,
+    longitude: number,
+    formChanged: boolean,
     topLogo: {
       width: number
     },
@@ -69,6 +66,9 @@ class EditProfileForm extends React.Component {
       phone: '',
       telegramId: '',
       faircoinAddress: '',
+      longitude: '',
+      latitude: '',
+      formChanged: false,
       visibleHeight: Metrics.screenHeight,
       uuid: null
     }
@@ -82,6 +82,8 @@ class EditProfileForm extends React.Component {
     this.state.telegramId = profile.telegram_id
     this.state.faircoinAddress = profile.faircoin_address
     this.state.uuid= profile.uuid
+    this.state.longitude = parseFloat(profile.location.longitude)
+    this.state.latitude = parseFloat(profile.location.latitude)
   }
 
   componentWillMount () {
@@ -118,37 +120,45 @@ class EditProfileForm extends React.Component {
   }
 
   handlePressPost = () => {
-    var { name, email, phone, telegramId, faircoinAddress, uuid } = this.state
+    var { name, email, phone, telegramId, faircoinAddress, longitude, latitude, uuid } = this.state
     this.isAttempting = true
     // attempt a login - a saga is listening to pick it up from here.
-
-    this.props.attemptProfilePost(name, email, phone, telegramId, faircoinAddress, uuid)
+    this.setState({ formChanged: false})
+    this.props.attemptProfilePost(name, email, phone, telegramId, faircoinAddress, longitude, latitude, uuid)
   }
 
   handleChangeName = (text) => {
-    this.setState({ name: text })
+    this.setState({ name: text, formChanged: true })
   }
 
   handleChangeEmail = (text) => {
-    this.setState({ email: text })
+    this.setState({ email: text, formChanged: true })
   }
 
   handleChangePhone = (text) => {
-    this.setState({ phone: text })
+    this.setState({ phone: text, formChanged: true })
   }
 
   handleChangeTelegramId= (text) => {
-    this.setState({ telegramId: text })
+    this.setState({ telegramId: text, formChanged: true })
   }
 
   handleChangeFaircoinAddress = (text) => {
-    this.setState({ faircoinAddress: text })
+    this.setState({ faircoinAddress: text, formChanged: true })
   }
 
-  renderPublishButtonText () {
+  handleChangeMap = (region) => {
+    this.setState({ longitude: region.longitude, latitude: region.latitude, formChanged: true})
+  }
+
+  renderPublishButtonText (formChanged) {
     if (this.props.posting) {
       return (
         <Text style={Styles.buttonText}>{I18n.t('Publishing')}</Text>
+      )
+    } else if (formChanged) { 
+      return (
+        <Text style={Styles.buttonText}>{I18n.t('Publish')}</Text>
       )
     } else {
       return (
@@ -185,11 +195,20 @@ class EditProfileForm extends React.Component {
   }
 
   render () {
-    const { name, email, phone, telegramId, faircoinAddress } = this.state
+    const {
+      name,
+      email,
+      phone,
+      telegramId,
+      faircoinAddress,
+      longitude,
+      latitude,
+      formChanged
+    } = this.state
     const editable = !this.props.posting
     return (
       <Container>
-        <CommonHeader title={I18n.t('Service')} />
+        <CommonHeader title={I18n.t('Edit Profile')} />
         <Content padder>
           <Card>
             <NamedLogo />
@@ -267,19 +286,41 @@ class EditProfileForm extends React.Component {
               onSubmitEditing={this.handlePressPost}
               />
           </Item>
-            <Text style={Styles.errorLabel}>
-              { (this.props.error && this.props.error.phone) ? this.props.error['phone'][0] : ''}
-            </Text>
+          <Text style={Styles.errorLabel}>
+            { (this.props.error && this.props.error.phone) ? this.props.error['phone'][0] : ''}
+          </Text>
           <Text style={Styles.errorLabel}>
             { (this.props.error && this.props.error.non_field_errors) ? this.props.error['non_field_errors'][0] : ''}
           </Text>
 
-      {this.renderFaircoinAddressInput(faircoinAddress, editable)}
+          {this.renderFaircoinAddressInput(faircoinAddress, editable)}
+
+          <Content style={Styles.mapSection}>
+            <Label>{I18n.t('Where do you offer your services:')}</Label>
+            <MapView
+              style={Styles.map}
+              initialRegion={{
+                latitude: latitude,
+                longitude: longitude,
+                latitudeDelta: 0.032,
+                longitudeDelta: 0.031
+              }}
+              onRegionChangeComplete={this.handleChangeMap}
+              >
+              <MapView.Marker
+                coordinate={{
+                  latitude: latitude,
+                  longitude: longitude}}
+                title={"title"}
+                description={"description"}
+              />
+            </MapView>
+          </Content>
 
           </Form>
           <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressPost}>
             <CardItem style={Styles.buttonCta}>
-              {this.renderPublishButtonText()}
+              {this.renderPublishButtonText(formChanged)}
             </CardItem>
           </TouchableOpacity>
           </Card>
@@ -293,20 +334,22 @@ const mapStateToProps = (state, ownProps) => {
   return {
     error: state.users.postError,
     profile: state.users.entities[state.login.user.uuid],
-    posting: state.users.posting
+    posting: state.users.posting,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptProfilePost:
-      (name, email, phone, telegramId, faircoinAddress, uuid) => dispatch(
+      (name, email, phone, telegramId, faircoinAddress, longitude, latitude, uuid) => dispatch(
         UsersActions.profilePostRequest(
           name,
           email,
           phone,
           telegramId,
           faircoinAddress,
+          longitude,
+          latitude,
           uuid
         )
       )
