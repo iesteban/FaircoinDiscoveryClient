@@ -9,7 +9,7 @@ This app is intended to be the base for many different alternative currencies, s
 
 **Step 2:** cd to the cloned repo:
 
-**Step 3:** Change your App name. Replace `FaircoinDiscovery` by your currency name. Find and replace with your favorite editor. Or with teh following commands:
+**Step 3:** Change your App name. Replace `FaircoinDiscovery` by your currency name. Find and replace with your favorite editor. Or with the following commands:
   * `$ find . -type f  -exec sed -i 's/faircoindiscovery/bitcoinbazaar/g' {} \;`
   * `$ find . -type f  -exec sed -i 's/FaircoinDiscovery/BitcoinBazaar/g' {} \;`
   * `$ find . -type f  -exec sed -i 's/Faircoin Discovery/Bitcoin Bazaar/g' {} \;`
